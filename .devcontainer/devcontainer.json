@@ -1,0 +1,37 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/docker-existing-docker-compose
+{
+    "name": "go project",
+    "build": {
+        "dockerfile": "./Dockerfile",
+        "context": ".."
+    },
+    "overrideCommand": true,
+    "workspaceFolder": "/workspace",
+    "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=delegated",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "golang.go",
+                "eamodio.gitlens", // IDE Git information
+                "vscode-icons-team.vscode-icons", // Better file extension icons
+                "ms-azuretools.vscode-docker"
+            ]
+        },
+        "settings":{
+            "editor.formatOnSave": true,
+            "go.useLanguageServer": true,
+            "go.lintOnSave": "package",
+            "[go]": {
+                "editor.codeActionsOnSave": {
+                    "source.organizeImports": "always"
+                }
+            },
+            "gopls": {
+                "usePlaceholders": false,
+                "staticcheck": true,
+                "formatting.gofumpt": true
+            }
+        }
+    }
+}
